@@ -1,0 +1,3 @@
+# Optional: only needed to regenerate AddBiomechanics .b3d replay artifacts.
+nimblephysics
+numpy
