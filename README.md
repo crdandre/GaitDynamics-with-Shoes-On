@@ -2,7 +2,7 @@
 
 **Live demo:** [demos.dandrea.sh/gaitdynamics-with-shoes-on](https://demos.dandrea.sh/gaitdynamics-with-shoes-on/)
 
-Shoe-sole-shaped finite element (FE) meshes were glued to the feet of a skeletal model to demonstrate deformation during walking. Given kinematic input data (walking), the "floor" height is adjusted so that contact energy is accumulated during walking as the feet strike, as the sole FE mesh intersects with the floor. 
+Shoe-sole-shaped finite element (FE) meshes were glued to the feet of a skeletal model to demonstrate real-time deformation during walking. Given kinematic input data (walking), the "floor" height is adjusted so that contact energy is accumulated during walking as the feet strike, as the sole FE mesh intersects with the floor. 
 
 You can guesstimate the "correct" floor offset from the feet (i.e., what might be considered the shoe sole thickness) by adjusting a slider to match the GRF recovered from the FE mesh to the GRF output produced by the GaitDynamics model for that same kinematic input.
 
