@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GaitDynamics with Shoes On!</title>
+  </head>
+  <body>
+    <main id="app-shell" aria-label="GaitDynamics NNFE replay">
+      <aside class="side-panel">
+        <div class="brand-row">
+          <div>
+            <h1>GaitDynamics with Shoes On!</h1>
+            <p class="subtitle">Realtime sole mesh deformation predicted with per-side NNs which reproduce conventional FE solutions</p>
+            <p id="frame-readout">Loading replay...</p>
+          </div>
+          <button id="play-toggle" class="icon-button" type="button" aria-label="Play or pause">Pause</button>
+        </div>
+
+        <input id="scrubber" class="scrubber" type="range" min="0" max="0" value="0" step="1" />
+
+        <section class="readout-card" aria-label="Ground reaction force">
+          <span>Vertical GRF</span>
+          <div class="legend-grid">
+            <span class="legend-blue">Right</span>
+            <span class="legend-orange">Left</span>
+            <span id="legend-reference" hidden><i class="legend-line solid"></i>OpenSim ref</span>
+            <span id="legend-gaitdynamics"><i class="legend-line solid"></i>GaitDynamics</span>
+            <span><i class="legend-line dashed"></i>Recovered sole GRF, filtered</span>
+          </div>
+          <canvas id="grf-chart-canvas"></canvas>
+          <label class="motion-picker">
+            <span>Motion file</span>
+            <select id="motion-select" aria-label="Select motion file"></select>
+          </label>
+          <p id="motion-provenance" class="motion-provenance">Loading motion source...</p>
+          <div class="control-grid grf-control-row">
+            <label>
+              <span>Floor y offset</span>
+              <input id="floor-y" type="range" min="-0.05" max="0.05" value="-0.038" step="0.001" />
+              <output id="floor-readout">-38 mm</output>
+            </label>
+          </div>
+          <p id="floor-tuning" class="source-note">Loading floor-height analysis...</p>
+        </section>
+
+        <section class="readout-card sole-card" aria-label="Sole mesh deformation">
+          <div class="sole-header">
+            <div class="sole-title-row">
+              <span>Sole mesh deformation</span>
+              <button
+                id="sole-info-toggle"
+                class="info-button"
+                type="button"
+                aria-label="Show sole mesh deformation details"
+                aria-expanded="false"
+                aria-controls="sole-info-panel"
+              >
+                i
+              </button>
+            </div>
+            <strong id="active-sole-label">Right</strong>
+          </div>
+          <div id="sole-info-panel" class="info-panel" hidden>
+            <p>
+              Browser ONNX inference predicts nodal displacement DOFs for the right and left sole meshes.
+            </p>
+            <p>
+              Pressure is evaluated on bottom Quad4 contact points:
+              <code>p_q = k_c * max(0, delta_q - u_y,q)</code>, then area-weighted back to the mesh.
+            </p>
+            <p>
+              One-foot NN inference time:
+              <strong><span id="inference-ms">--</span> ms</strong>
+              per ONNX call, so the max serial rate is
+              <strong><span id="inference-hz">--</span> Hz</strong>.
+            </p>
+            <p>
+              Current replay use:
+              <span id="inference-usage">precomputed on load and floor changes; playback uses cached fields.</span>
+            </p>
+          </div>
+          <div class="mini-plot mini-plot-top">
+            <span>Top-down</span>
+            <canvas id="sole-top-canvas"></canvas>
+          </div>
+          <div class="mini-plot">
+            <span>Lateral</span>
+            <canvas id="sole-lateral-canvas"></canvas>
+          </div>
+        </section>
+
+      </aside>
+
+      <section class="viewer-panel" aria-label="3D kinematic replay viewer">
+        <canvas id="viewport"></canvas>
+      </section>
+    </main>
+
+    <div id="loading">Loading replay buffers...</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

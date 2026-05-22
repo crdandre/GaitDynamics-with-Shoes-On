@@ -1,0 +1,36 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environments and upstream checkout.
+.venv/
+GaitDynamics/
+deploy/
+deploy-local-rsync.sh
+
+# Raw biomechanics data can be large and may contain subject/trial metadata.
+*.b3d
+*.B3D
+
+# Browser replay dependencies/build output.
+web/node_modules/
+web/dist/
+web/public/artifacts/local_*/
+web/public/artifacts/addb_*/
+!web/public/artifacts/addb_subject2_walking1_replay/
+!web/public/artifacts/addb_subject2_walking1_replay/**
+!web/public/artifacts/addb_subject2_walking2_replay/
+!web/public/artifacts/addb_subject2_walking2_replay/**
+!web/public/artifacts/addb_subject2_walking3_replay/
+!web/public/artifacts/addb_subject2_walking3_replay/**
+!web/public/artifacts/addb_subject2_walkingTS1_replay/
+!web/public/artifacts/addb_subject2_walkingTS1_replay/**
+!web/public/artifacts/addb_subject2_walkingTS2_replay/
+!web/public/artifacts/addb_subject2_walkingTS2_replay/**
+!web/public/artifacts/addb_subject2_walkingTS4_replay/
+!web/public/artifacts/addb_subject2_walkingTS4_replay/**
+
+# Generated analysis/training outputs stay local. The standalone browser demo
+# uses committed assets under web/public/artifacts instead.
+outputs/*
