@@ -12,6 +12,15 @@ You can guesstimate the "correct" floor offset from the feet by adjusting a slid
 
 I've included a few different walking motions so the different GRF, floor offset amounts, and deformation patterns can be observed.
 
+## Tech Stack
+
+- **Three.js**: renders the anatomy, floor, force markers, and deforming sole meshes
+- **ONNX Runtime Web**: in-browser NN inference for sole mesh deformation
+- **Vite** static web app
+- **GaitDynamics** predicts GRF/CoP from kinematic inputs when generating replay artifacts
+- **OpenSim / AddBiomechanics / Nimble**: provides the standardized skeletal model and `.b3d` motion data processed to be used in webapp
+- **Python + NumPy**: used only for offline artifact generation
+
 ## Run Locally
 
 ```bash
