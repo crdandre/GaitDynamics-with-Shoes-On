@@ -15,7 +15,7 @@ I've included a few different walking motions so the different GRF, floor offset
 ## Tech Stack
 
 - **Three.js**: renders the anatomy, floor, force markers, and deforming sole meshes
-- **ONNX Runtime Web**: in-browser NN inference for sole mesh deformation
+- **ONNX Runtime Web**: in-browser NN inference for sole mesh deformation. Neural net trained using an NNFE approach as described [here](https://www.sciencedirect.com/science/article/abs/pii/S0045782524003165)
 - **Vite** static web app
 - **GaitDynamics** predicts GRF/CoP from kinematic inputs when generating replay artifacts
 - **OpenSim / AddBiomechanics / Nimble**: provides the standardized skeletal model and `.b3d` motion data processed to be used in webapp
